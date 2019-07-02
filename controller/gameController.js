@@ -4,12 +4,12 @@ const logger  = require('../config/logger');
 const { Player } = require('../models/player');
 const { Game } = require('../models/game');
 const {getDeck, shuffleDeck, dealCard } = require('./helperFunctions');
-// const DECK = require('../utils/deck'); 
+// const DECK = require('../utils/deck'); Use this if you wish to save trips to DB to create cards on initialization.
 
 // Updates players' decks in the db
 const updatePlayersDecks = async (p1Id, p2Id, p1Deck, p2Deck) => {
     if(typeof p1Id !== 'string' || typeof p2Id !== 'string'){
-        throw Error('p1Id and p@Id  must be of type String');
+        throw Error('p1Id and p2Id  must be of type String');
     };
     if(!Array.isArray(p1Deck) || !Array.isArray(p1Deck)){
         throw Error('p1Deck and p2Deck must be of type Array');
