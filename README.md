@@ -29,10 +29,11 @@ The following endpoints are available.
 1. Docker/docker-compose
 
 #### Steps
-1. `cd` into the project dir
-2. run `docker-compose build`
-3. run `docker-compose up`. App will be listening on `port:8080`
-4. `cd` into the `tester` folder and run `node tester.js`
+1. `git clone https://github.com/Ogala/war-for-two.git`
+2. `cd` into the project dir
+3. run `docker-compose build`
+4. run `docker-compose up`. App will be listening on `port:8080`
+
 
 ### Option 2
 #### Requirements
@@ -40,11 +41,11 @@ The following endpoints are available.
 2. Mongodb
 
 ### Steps
-1. Start mongodb
-2. `cd` into project folder
-3. Run `npm install`
-4. Run `npm start`
-5. Run test as described in step 4 of Option 1
+1. `git clone https://github.com/Ogala/war-for-two.git`
+2. Mkae sure tour local mongodb is installed and running.
+3. `cd` into project folder
+4. Run `npm install`
+5. Run `npm start` or `nodemon`
 
 ## Dependencies
 1. Mongodb
