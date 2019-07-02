@@ -172,7 +172,6 @@ const battle = async (game) => {
 // Initializes a game
 const initializeGame = async (req, res) => {
     const deck = await getDeck();
-    console.log("deck length ", deck.length)
     const shuffledDeck = await shuffleDeck(deck);
     const playerDecks = await dealCard(shuffledDeck)
     const [playerOneDeck, playerTwoDeck] = playerDecks;
