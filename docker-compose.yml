@@ -1,0 +1,20 @@
+version: '3'
+
+services: 
+  mongo:
+    image: mongo:latest
+    restart: always
+  warfortwo:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    ports: 
+      - '8080:8080'
+    volumes:
+      - /app/node-modules
+    environment: 
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - DB_NAME=warfortwo
+    depends_on: 
+      - mongo
