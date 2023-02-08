@@ -1,0 +1,1018 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "3dbv5zc8lwjrt"
+  },
+  "info": {
+    "title": "Josplay Music Data API",
+    "version": "1.0.0",
+    "description": "Josplay Music Data API is a powerful music data service that provides a comprehensive and in-depth understanding of African music. This service offers a wide range of APIs that allow developers to access the most accurate and up-to-date intelligence and metadata on African music. Whether you're a music enthusiast, a music industry professional, or a developer building a music-related application, Josplay Music Data API has everything you need to know about African music.\n\nWith Josplay Music Data API, you can easily access information such as artist bios, album details, track listings, lyrics, and more. You can also retrieve charts and playlists, as well as access data on music events and festivals happening in Africa.\n\nThe service is built on a robust and reliable infrastructure, ensuring that you can access the data you need quickly and easily. Additionally, the service is constantly updated with new information and features, ensuring that you always have the most up-to-date data at your fingertips.\n\nIn short, Josplay Music Data API is the ultimate resource for anyone looking to gain a deeper understanding of African music. Whether you're a music lover, a developer, or a music industry professional, this service has everything you need to know about African music.",
+    "contact": {
+      "name": "Josplay Inc,",
+      "url": "https://josplay.com,",
+      "email": "info@josplay.com"
+    },
+    "license": {
+      "name": "Attribution-ShareAlike 4.0 International (CC BY-SA 4.0),",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.josplay.com"
+    }
+  ],
+  "paths": {
+    "/person/{personId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "personId",
+          "in": "path",
+          "description": "A unique identifier for the target Person. ",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET details of the Person with the provided ID",
+        "operationId": "get-person",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/401"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "parameters": [],
+        "description": "A GET operation is an HTTP request method used to retrieve data from a server. In the context of the Person model, a GET operation to retrieve a Person object would allow the client to retrieve information about a particular person in the music industry. This information may include the person's name, their role in the industry (e.g. artist, songwriter, composer, producer), their discography, and other relevant information. The response from the server would be a representation of the Person object in the requested format, such as JSON."
+      }
+    },
+    "/person/{personId}/discography": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "personId",
+          "in": "path",
+          "description": "A unique identifier for the target Person. ",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET all discography of the Person (Artist) with the provided ID",
+        "operationId": "get-person-discography",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discography"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/401"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "parameters": [],
+        "description": "A GET operation that returns a Person's discography retrieves a list of musical releases (such as albums, singles, compilations, etc.) associated with a specific Person in the music industry. This operation takes in the identifier of the Person (such as their UUID) and returns a list of all the musical releases that they have contributed to as an artist, songwriter, composer, producer, or any other relevant role. The response includes details such as the release title, main artist, genre, release date, and any other relevant information about each release. This operation is useful for retrieving a comprehensive overview of a Person's body of work in the music industry."
+      }
+    },
+    "/person/{personId}/participations": {
+      "get": {
+        "summary": "GET all Participations of a Person",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Participation"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "get-person-participations",
+        "description": "The endpoint that returns all the Participations of a Person in the music industry is a GET operation that retrieves information about a person's involvement in the creation of musical works. It lists the roles that the person played in the making of a song, excluding the role of Main Artist. This information can be used to understand the person's contributions to the music industry and their impact on the creative process of creating songs."
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/personId"
+        }
+      ]
+    },
+    "/release/{releaseId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "releaseId",
+          "in": "path",
+          "required": true,
+          "description": "Unique Identifier for the release"
+        }
+      ],
+      "get": {
+        "summary": "GET editorial details of a Release",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Release"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "get-release-releaseId",
+        "description": "The endpoint is a GET operation that accepts a release ID as a parameter. When a valid release ID is provided, the endpoint returns a complete Release object, including its UUID, title, main artist, audience, description, number of tracks, release country, label, participants, release type, publisher, genres, edit state, release date, and cover art. The returned object provides all the relevant information about a particular release, allowing the caller to understand its contents, production details, and other important aspects. If the provided release ID does not match any existing releases, the endpoint returns an error response indicating that the requested release could not be found."
+      }
+    },
+    "/track/{trackId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "trackId",
+          "in": "path",
+          "required": true,
+          "description": "Unique Identifier for the target track."
+        }
+      ],
+      "get": {
+        "summary": "Get editorial details of a Track",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Track"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "get-track-trackId",
+        "description": "The GET endpoint returns detailed information about a specific Track. The trackId is a required parameter in the request and is used to identify the track. The response will include information such as the track title, main artist, track length, album, and other relevant details. This endpoint allows clients to retrieve information about a specific track and use it in their application or service."
+      }
+    },
+    "/artist/{artistId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "artistId",
+          "in": "path",
+          "description": "A unique identifier for the target Artist.",
+          "example": "UUID: 902d3342-a704-11ed-a64f-f7cd3273ead5",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET details of the Artist with the provided ID",
+        "operationId": "get-artist-by-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artist"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/401"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "parameters": [],
+        "description": "A GET operation is an HTTP request method used to retrieve data from a server. In the context of the Artist model, a GET operation to retrieve a Artist object would allow the client to retrieve information about a particular person in the music industry. This information may include the artist's name, their role in the industry is fixed to Artist, their discography, and other relevant information. The response from the server would be a representation of the Artist object in the requested format, such as JSON."
+      }
+    },
+    "/artist/{artistId}/discography": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "artistId",
+          "in": "path",
+          "description": "A unique identifier for the target artist. ",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET all discography of the Artist with the provided ID",
+        "operationId": "get-artist-discography",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discography"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/401"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "description": "A GET operation that returns an Artist's discography retrieves a list of musical releases (such as albums, singles, compilations, etc.) associated with a specific Artist in the music industry. This operation takes in the identifier of the Person (such as their UUID) and returns a list of all the musical releases that they have contributed to as an artist. The response includes details such as the release title, main artist, genre, release date, and any other relevant information about each release. This operation is useful for retrieving a comprehensive overview of an Artist's body of work in the music industry and similar to the Person operation equivalent."
+      }
+    },
+    "/artist/{artistId}/participations": {
+      "get": {
+        "summary": "GET all Participation of an Artist",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Participation"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "get-artist-participations",
+        "description": "The endpoint that returns all the Participations of an Artist where their role is not an Artists. It lists the roles that the Artist played in the making of a song, excluding the role of Main Artist. This information can be used to understand the person's contributions to the music industry and their impact on the creative process of creating songs."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "artistId",
+          "in": "path",
+          "required": true,
+          "description": "Unique identifier of the target Artist",
+          "example": "UUID: 902d3342-a704-11ed-a64f-f7cd3273ead5"
+        }
+      ]
+    },
+    "/band/{bandId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "bandId",
+          "in": "path",
+          "required": true,
+          "description": "Unique identifier of the target Band",
+          "example": "UUID: 902d3342-a704-11ed-a64f-f7cd3273ead5"
+        }
+      ],
+      "get": {
+        "summary": "GET details of a Band",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Band"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "get-band-bandId",
+        "description": "The GET endpoint that returns full details of a Band is an API endpoint that allows users to retrieve the complete information of a Band, given its unique bandId as the parameter. The bandId is a required field and must be passed as a query parameter to the API endpoint.\n\nThe API response would contain all the details of the Band, such as the UUID, name, members, genres, and other relevant information. The response will be in JSON format and will be limited to the details that are publicly available. The API endpoint may also include error responses in case the bandId is not found or if there are any other issues with the API request."
+      }
+    },
+    "/band/{bandId}/discography": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "bandId",
+          "in": "path",
+          "required": true,
+          "description": "Unique identifier of the target Band",
+          "example": "UUID: 902d3342-a704-11ed-a64f-f7cd3273ead5"
+        }
+      ],
+      "get": {
+        "summary": "GET all discography of the Band with the provided ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discography"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "get-band-bandId-discography",
+        "description": "A GET operation that returns a Person's discography retrieves a list of musical releases (such as albums, singles, compilations, etc.) associated with a specific Band. This operation takes in the identifier of the Band (such as their UUID, ISNI, BOWI) and returns a list of all the musical releases that they have contributed to as an artist. The response includes details such as the release title, mainArtist - which will equal this Band's UUID, genre, release date, and any other relevant information about each release. This operation is useful for retrieving a comprehensive overview of a Band's body of work."
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "400": {
+        "description": "Bad Request. The request was invalid or cannot be served."
+      },
+      "401": {
+        "description": "Unauthorized. The request requires user authentication or, if the request included authorization credentials, authorization has been refused for those credentials."
+      },
+      "403": {
+        "description": "Forbidden. The server understood the request, but it refuses to authorize it."
+      },
+      "404": {
+        "description": "Not Found. The requested resource could not be found but may be available again in the future."
+      },
+      "500": {
+        "description": "Internal Server Error. An internal server error occurred while processing the request."
+      }
+    },
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "1be36f48f0f41"
+        },
+        "properties": {
+          "UUID": {
+            "type": "string",
+            "description": "A unique identifier for the artist"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The artist's first name"
+          },
+          "otherName": {
+            "type": "string",
+            "description": "The artist's other name"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The artist's last name"
+          },
+          "title": {
+            "type": "string",
+            "description": "The artist's title, which is a combination of the artist''s first and last name",
+            "example": "Ajayi Diabate"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date of birth of the artist"
+          },
+          "dateOfDeath": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date of death of the artist"
+          },
+          "stageName": {
+            "type": "string",
+            "description": "The stage name of the artist"
+          },
+          "country": {
+            "type": "string",
+            "description": "The country the artist is from"
+          },
+          "primaryLanguage": {
+            "type": "string",
+            "description": "The artist's primary language"
+          },
+          "type": {
+            "type": "string",
+            "description": "This value will always be Artist, for an Artist",
+            "default": "Person"
+          },
+          "otherLanguages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Other languages spoken by the artist"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the artist's profile"
+              },
+              "biography": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the artist's biography"
+              },
+              "images": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the artist's images"
+              },
+              "discography": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the artist's discography"
+              }
+            }
+          },
+          "identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "ISNI",
+                    "JosplayId",
+                    "BOWI"
+                  ],
+                  "description": "The type of identifier"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "A Person in the music industry refers to an individual who is involved in creating and producing music. This can include artists, who perform and interpret songs, songwriters, who write the lyrics and music for songs, composers, who create original pieces of music, producers, who oversee the recording and production of music, and many other roles. A Person can also be a combination of these roles, and the specific role they play in the creation of music can vary depending on the project they are working on."
+      },
+      "Release": {
+        "type": "object",
+        "properties": {
+          "UUID": {
+            "type": "string",
+            "description": "Unique identifier for the release"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the release"
+          },
+          "mainArtist": {
+            "type": "string",
+            "description": "Main artist associated with the release"
+          },
+          "audience": {
+            "type": "string",
+            "description": "Target audience for the release"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the release"
+          },
+          "numTracks": {
+            "type": "integer",
+            "description": "Number of tracks in the release"
+          },
+          "releaseCountry": {
+            "type": "string",
+            "description": "Country of the release"
+          },
+          "label": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Record label associated with the release"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of participants involved in the release"
+          },
+          "releaseType": {
+            "type": "string",
+            "description": "Type of release (e.g. album, single, etc.)"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher of the release"
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of genres associated with the release"
+          },
+          "editState": {
+            "type": "string",
+            "description": "Current state of the release (e.g. draft, published, etc.)"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the release was published"
+          },
+          "coverArt": {
+            "type": "string",
+            "description": "URL to the cover art for the release"
+          }
+        },
+        "description": "A Release is a collection of tracks that are meant to be sold or made available to the public. A Release can take various forms such as an Album, Single, Compilation, or Extended Play (EP). The Release is usually associated with an artist or a group of artists and is characterized by a title, main artist, audience, description, number of tracks, release country, label, participants, release type, publisher, genres, edit state, release date, and cover art."
+      },
+      "Track": {
+        "type": "object",
+        "properties": {
+          "UUID": {
+            "type": "string",
+            "description": "Unique identifier of the track"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the track"
+          },
+          "mainArtist": {
+            "type": "string",
+            "description": "Main artist of the track"
+          },
+          "audience": {
+            "type": "string",
+            "description": "Audience of the track"
+          },
+          "featuredArtist": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of featured artists on the track"
+          },
+          "releaseId": {
+            "type": "string",
+            "description": "Identifier of the Release the track belongs to"
+          },
+          "releaseCountry": {
+            "type": "string",
+            "description": "Country of the release"
+          },
+          "label": {
+            "type": "string",
+            "description": "Record Label of the Release"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of participants and contributors on the track that are not lead performers"
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of genres the track percievable in the track"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Release date of the track"
+          },
+          "identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of external identifers for the track. E.g. ISRC, BOWI, JosplayId"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Duration of the track in seconds"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "uri",
+                "description": "Link to this track's resource"
+              },
+              "artist": {
+                "type": "string",
+                "format": "uri",
+                "description": "Link to the main artist of this track"
+              },
+              "release": {
+                "type": "string",
+                "format": "uri",
+                "description": "Link to the release this track belongs to"
+              },
+              "participants": {
+                "type": "string",
+                "format": "uri",
+                "description": "Link to the participants of this track"
+              },
+              "analysis": {
+                "type": "string",
+                "format": "uri",
+                "description": "Link to the ai audio analysis of this track"
+              }
+            }
+          }
+        },
+        "description": "A Track, also known as a song, is a recorded composition that forms a part of a larger musical release such as an album or EP. It typically features vocals, instrumentals, and lyrics. Tracks can vary in length, genre, and style and can be created by artists, songwriters, composers, and producers. They are typically recorded in a studio and can be made available for streaming or purchase."
+      },
+      "Band": {
+        "type": "object",
+        "properties": {
+          "UUID": {
+            "type": "string",
+            "description": "A unique identifier for the band"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the band"
+          },
+          "description": {
+            "type": "string",
+            "description": "A short description of the band"
+          },
+          "type": {
+            "type": "string",
+            "default": "Band",
+            "description": "The type of the band"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Active",
+              "Inactive"
+            ],
+            "default": "Active",
+            "description": "The status of the band"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "pid": {
+                  "type": "string",
+                  "description": "The unique identifier of the member"
+                },
+                "person": {
+                  "$ref": "#/components/schemas/Person"
+                },
+                "roles": {
+                  "type": "array",
+                  "description": "The roles of the member in the band",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The status of the member in the band"
+                }
+              }
+            }
+          },
+          "dateOfFormation": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date of formation of the band - precision is on the year of formation."
+          },
+          "identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "ISNI",
+                    "JosplayId",
+                    "BOWI"
+                  ],
+                  "description": "The type of identifier"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the band's profile"
+              },
+              "biography": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the band's biography"
+              },
+              "images": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the band's images"
+              },
+              "discography": {
+                "type": "string",
+                "format": "uri",
+                "description": "The link to the band's discography"
+              }
+            }
+          }
+        }
+      },
+      "Artist": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Person"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "description": "This value will always be Artist, for an Artist",
+                "default": "Artist",
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "description": "An Artist is an individual or group who creates and performs music. This can include singers, musicians, bands, and other performers in the music industry. They may also be involved in other aspects of music creation, such as songwriting, composing, producing, and more. An Artist is often recognized for their unique sound and style, and they may release albums and perform live shows to share their music with the world."
+      },
+      "Discography": {
+        "title": "Discography",
+        "x-stoplight": {
+          "id": "btftsp8v0j7xl"
+        },
+        "type": "object",
+        "description": "A discography refers to the complete collection of recorded works released by an artist. It encompasses all albums, singles, EPs, and other music releases that the artist has put out over the course of their career. The discography serves as a comprehensive overview of an artist's musical output and provides a timeline of their creative journey. It is a valuable resource for fans, music critics, and industry professionals, providing a rich source of information about the artist and their music.",
+        "properties": {
+          "releases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Release"
+            }
+          },
+          "eps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Release"
+            }
+          },
+          "singles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Release"
+            }
+          },
+          "compilations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Release"
+            }
+          }
+        }
+      },
+      "Participation": {
+        "type": "object",
+        "properties": {
+          "UUID": {
+            "type": "string",
+            "description": "A unique identifier for the participation."
+          },
+          "pid": {
+            "type": "string",
+            "description": "A string value representing the project ID, for example, the track UUID for the type 'track'. It is a required field."
+          },
+          "type": {
+            "type": "string",
+            "description": "A string value that defines the type of project the participation belongs to. It can be either 'track', 'release', 'book', 'film', or 'talk'. It is an enumerated field and is required.",
+            "enum": [
+              "track",
+              "release",
+              "book",
+              "film",
+              "talk"
+            ]
+          },
+          "party": {
+            "type": "string",
+            "description": "A string value that represents the unique identifier (UUID) of the participant. It is a required field."
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "An array of string values that defines the roles played by the participant in the project."
+            }
+          }
+        },
+        "description": "A Participation model represents a contribution made by an individual or a group of individuals in a particular project such as a track, release, book, film, or talk."
+      }
+    },
+    "securitySchemes": {
+      "API Key - 1": {
+        "name": "apikey",
+        "type": "apiKey",
+        "in": "header",
+        "description": "An API key obtained through application registration"
+      }
+    },
+    "parameters": {
+      "personId": {
+        "name": "personId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "example": "796a95e8-a57c-11ed-9fff-c711209050d9"
+        },
+        "description": "A `string` identifier for Person."
+      }
+    }
+  },
+  "security": [
+    {
+      "API Key - 1": []
+    }
+  ]
+}
